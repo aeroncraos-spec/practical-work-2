@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STUDENT REGISTRATION FORM</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .registration-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        .form-header {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .btn-register {
+            background-color: #3498db;
+            border: none;
+            width: 48%;
+        }
+        .btn-reset {
+            background-color: #e74c3c;
+            border: none;
+            width: 48%;
+        }
+        .form-label {
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="registration-container">
+                    <!-- Form Header -->
+                    <h2 class="form-header">POLITEKNIK KUCHING SARAWAK<br><small class="text-muted">STUDENT REGISTRATION FORM</small></h2>
+
+                    <!-- Registration Form -->
+                    <form id="registrationForm">
+                        <div class="row mb-3">
+                            <!-- Student Image Upload -->
+                            <div class="col-md-6">
+                                <label for="studentImage" class="form-label">STUDENT IMAGE:</label>
+                                <input type="file" class="form-control" id="studentImage" accept="image/*">
+                                <div class="form-text">(less than 5 MB)</div>
+                                <!-- Image Preview -->
+                                <div id="imagePreview" class="mt-2"></div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <!-- Student's Name -->
+                            <div class="col-md-4">
+                                <label for="studentName" class="form-label">STUDENT NAME:</label>
+                                <input type="text" class="form-control" id="studentName" placeholder="Full Name(capital letters only)" onchange="convertToUpper(this)">
+                            </div>
+                            <!-- Father's Name -->
+                            <div class="col-md-4">
+                                <label for="fatherName" class="form-label">FATHER'S NAME:</label>
+                                <input type="text" class="form-control" id="fatherName" placeholder="Full Name(capital letters only)" onchange="convertToUpper(this)">
+                            </div>
+                            <!-- Mother's Name -->
+                            <div class="col-md-4">
+                                <label for="motherName" class="form-label">MOTHER'S NAME:</label>
+                                <input type="text" class="form-control" id="motherName" placeholder="Full Name(capital letters only)" onchange="convertToUpper(this)">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <!-- Gender -->
+                            <div class="col-md-4">
+                                <label class="form-label">GENDER:</label>
+                                <div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender" id="male" value="Male">
+                                        <label class="form-check-label" for="male">MALE</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender" id="female" value="Female">
+                                        <label class="form-check-label" for="female">FEMALE</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Date of Birth -->
+                            <div class="col-md-4">
+                                <label for="dob" class="form-label">DATE OF BIRTH:</label>
+                                <input type="date" class="form-control" id="dob">
+                            </div>
+                            <!-- Email -->
+                            <div class="col-md-4">
+                                <label for="email" class="form-label">E-MAIL:</label>
+                                <input type="email" class="form-control" id="email" placeholder="email@gmail.com" onfocus="onEmailFocus()" onblur="onEmailBlur()">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <!-- Level -->
+                            <div class="col-md-4">
+                                <label for="level" class="form-label">LEVEL:</label>
+                                <select class="form-select" id="level">
+                                    <option selected disabled>Select level</option>
+                                    <option>FOUNDATION</option>
+                                    <option>DIPLOMA</option>
+                                </select>
+                            </div>
+                            <!-- Department -->
+                            <div class="col-md-4">
+                                <label for="department" class="form-label">DEPARTMENT:</label>
+                                <select class="form-select" id="department">
+                                    <option selected disabled>Select department</option>
+                                    <option>JABATAN KEJURUTERAAN AWAM</option>
+                                    <option>JABATAN KEJURUTERAAN MEKANIKAL</option>
+                                    <option>JABATAN KEJURUTERAAN PETROKIMIA</option>
+                                    <option>JABATAN PERDAGANGAN</option>
+                                    <option>JABATAN TEKNOLOGI MAKLUMAT DAN KOMUNIKASI</option>
+                                    <option>JABATAN KEJURUTERAAN ELEKTRIK</option>
+                                </select>
+                            </div>
+                            <!-- Tel/Mobile -->
+                            <div class="col-md-4">
+                                <label for="phone" class="form-label">TEL/MOBILE:</label>
+                                <input type="tel" class="form-control" id="phone" placeholder="e.g., 012-345 6789">
+                            </div>
+                        </div>
+
+                        <!-- Address -->
+                        <div class="row mb-3">
+                            <label for="address" class="form-label">ADDRESS:</label>
+                            <textarea class="form-control" id="address" rows="3"></textarea>
+                        </div>
+
+                        <div class="row mb-4">
+                            <!-- State -->
+                            <div class="col-md-4">
+                                <label for="state" class="form-label">STATE:</label>
+                                <select class="form-select" id="state">
+                                    <option selected disabled>Select state</option>
+                                    <option>SARAWAK</option>
+                                    <option>SABAH</option>
+                                    <option>SELANGOR</option>
+                                    <option>JOHOR</option>
+                                    <option>MELAKA</option>
+                                    <option>PULAU PINANG</option>
+                                    <option>PERLIS</option>
+                                    <option>KELANTAN</option>
+                                    <option>PAHANG</option>
+                                    <option>PERAK</option>
+                                    <option>NEGERI SEMBILAN</option>
+                                    <option>TERENGGANU</option>
+                                    <option>KEDAH</option>
+                                </select>
+                            </div>
+                            <!-- City -->
+                            <div class="col-md-4">
+                                <label for="city" class="form-label">CITY:</label>
+                                <input type="text" class="form-control" id="city">
+                            </div>
+                            <!-- Postcode -->
+                            <div class="col-md-4">
+                                <label for="postcode" class="form-label">POSTCODE:</label>
+                                <input type="text" class="form-control" id="postcode" maxlength="5">
+                            </div>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn btn-success btn-register" data-bs-toggle="modal" data-bs-target="#successModal" onclick="validateForm(event)">Register</button>
+                            <button type="reset" class="btn btn-danger btn-reset">Reset</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Registration Successful</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Your details have been saved!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap & JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Function to convert text to UPPERCASE on change
+        function convertToUpper(field) {
+            field.value = field.value.toUpperCase();
+        }
+
+        // onFocus event for Email field
+        function onEmailFocus() {
+            let emailField = document.getElementById('email');
+            emailField.style.backgroundColor = "#fff3cd"; // Light yellow background
+            emailField.style.borderColor = "#ffc107"; // Yellow border
+        }
+
+        // onBlur event for Email field
+        function onEmailBlur() {
+            let emailField = document.getElementById('email');
+            emailField.style.backgroundColor = ""; // Revert background
+            emailField.style.borderColor = ""; // Revert border color
+
+            // Simple validation to check if email contains '@'
+            if (emailField.value && !emailField.value.includes('@')) {
+                alert('Please enter a valid email address that contain "@".');
+            }
+        }
+
+        // Basic Form Validation before showing modal
+        function validateForm(event) {
+            let studentName = document.getElementById('studentName').value;
+            let email = document.getElementById('email').value;
+
+            if (studentName === "" || email === "") {
+                alert("Please fill in the required fields (Student Name and Email) before registering.");
+                event.preventDefault(); // Prevent modal from showing
+            }
+            // If validation passes, the modal will show via data-bs-toggle
+        }
+
+        // Image Preview Functionality
+        document.getElementById('studentImage').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById('imagePreview');
+            preview.innerHTML = ''; // Clear previous preview
+
+            if (file) {
+                if (file.size > 5 * 1024 * 1024) { // Check file size (5MB)
+                    alert('File size must be less than 5 MB.');
+                    this.value = ''; // Clear the file input
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.style.maxWidth = '150px';
+                    img.style.marginTop = '10px';
+                    img.className = 'img-thumbnail';
+                    preview.appendChild(img);
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>
